@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Index</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1>Hello User</h1>
+    <p>Please enter your license if you haven't entered your license.</p>
+    <p>If you have already entered your license, Please login to continue.</p>
+    <ul>
+        <li>Go to the <a href="/license" th:href="@{/license}">License</a></li>
+        <li>Go to the <a href="/login" th:href="@{/loginr}">Login</a></li>
+    </ul>
+</div>
+</body>
+</html>

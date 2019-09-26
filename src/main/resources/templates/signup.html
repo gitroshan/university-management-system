@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/nonauthlayout}">
+<head>
+<title>Register</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="card">
+			<div class="card-header bg-primary">
+				<div class="app-brand">
+					<a href="/index.html"> 
+						<svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
+                        <g fill="none" fill-rule="evenodd">
+                          <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
+                          <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
+                        </g>
+                      </svg> <span class="brand-name">Roshan's Dashboard</span>
+					</a>
+				</div>
+			</div>
+			<div class="card-body p-5">
+				<h4 class="text-dark mb-5">Sign Up</h4>
+				<form action="#" th:action="@{/register}" th:object="${userForm}" method="post">
+					<div class="row">
+						<div class="form-group col-md-12 mb-4">
+							<input type="text" class="form-control input-lg" id="firstName" aria-describedby="nameHelp" placeholder="First Name" required th:field="*{firstName}">
+						</div>
+						<div class="form-group col-md-12 mb-4">
+							<input type="text" class="form-control input-lg" id="lastName" aria-describedby="nameHelp" placeholder="Last Name" required th:field="*{lastName}">
+						</div>
+						<div class="form-group col-md-12 mb-4">
+							<input type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Email" required th:field="*{email}">
+						</div>
+						<div class="form-group col-md-12 ">
+							<input type="password" class="form-control input-lg" id="password" placeholder="Password" required th:field="*{password}">
+						</div>
+						<div class="form-group col-md-12 ">
+							<input type="password" class="form-control input-lg" id="confirmPassword" placeholder="Confirm Password" required th:field="*{confirmPassword}">
+						</div>
+						<div class="col-md-12">
+							<div class="d-inline-block mr-3">
+								<label class="control control-checkbox"> 
+								<input type="checkbox" required />
+									<div class="control-indicator"></div> 
+									I Agree the terms and conditions
+								</label>
+							</div>
+							<button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign Up</button>
+							<p>
+								Already have an account? <a class="text-blue" href="loginPage">Sign in</a>
+							</p>
+						</div>
+					</div>
+				</form>
+				
+				
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+
