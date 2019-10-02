@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.roshan.university.form.UserForm;
 import com.roshan.university.model.AppUser;
-import com.roshan.university.model.AuthenticatedUser;
 import com.roshan.university.service.AppUserService;
 import com.roshan.university.utils.WebUtils;
 
@@ -38,13 +36,7 @@ public class ViewController {
     public String welcomePage(Model model, Principal principal, Locale locale) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
-        System.out.println(this.messageSource.getMessage("site.name", null, locale));
-        System.out.println("--------------------");
-        System.out.println(principal.toString());
 
-        UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
-        AuthenticatedUser authenticatedUser = (AuthenticatedUser) authenticationToken.getPrincipal();
-        System.out.println(authenticatedUser);
         return "welcomePage";
     }
 

@@ -1,33 +1,23 @@
 package com.roshan.university.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import com.roshan.university.utils.ContactNumberConstraint;
+
 @Entity
-@Table(name = "app_user")
-public class AppUser {
+@Table(name = "professor")
+public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // @NotEmpty(message = "{name.not.empty}")
-    @NotEmpty(message = "Please provide a username")
-    @Email(message = "Please provide an email")
-    @Column(unique = true)
-    private String username;
-
-    @NotEmpty(message = "Please provide a password")
-    private String password;
 
     @NotEmpty(message = "Please provide a first name")
     private String firstName;
@@ -35,8 +25,14 @@ public class AppUser {
     @NotEmpty(message = "Please provide a last name")
     private String lastName;
 
-    @ManyToMany
-    private Set<AppRole> roles;
+    @NotEmpty(message = "Please provide an email")
+    @Email(message = "Please provide an email")
+    @Column(unique = true)
+    private String email;
+
+    @NotEmpty(message = "Please provide a phone number")
+    @ContactNumberConstraint
+    private Long phoneNumber;
 
     public Long getId() {
         return this.id;
@@ -44,30 +40,6 @@ public class AppUser {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<AppRole> getRoles() {
-        return this.roles;
-    }
-
-    public void setRoles(Set<AppRole> roles) {
-        this.roles = roles;
     }
 
     public String getFirstName() {
@@ -84,6 +56,22 @@ public class AppUser {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
 }
