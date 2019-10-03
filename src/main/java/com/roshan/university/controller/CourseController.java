@@ -50,12 +50,13 @@ public class CourseController {
     public String addNewCourse(@Valid Course course, BindingResult bindingResult, Model model) {
 
         this.log.info("Submitting course {}", course);
-        if (bindingResult.hasErrors()) {
-
-            this.log.info("Form has some errors");
-            return "course/index";
-        }
         try {
+            if (bindingResult.hasErrors()) {
+
+                this.log.info("Form has some errors");
+                return "course/index";
+            }
+
             this.courseRepository.save(course);
             model.addAttribute("successMessage", "Course is saved");
 
@@ -73,7 +74,7 @@ public class CourseController {
             ObjectError error = new FieldError("course", "name", "Course cannot be saved.");
             if (e instanceof DataIntegrityViolationException) {
                 error = new FieldError("course", "name",
-                        "Course with name \"" + course.getName() + "\"is already exists.");
+                        "Course with name \"" + course.getName() + "\" is already exists.");
             }
             bindingResult.addError(error);
 

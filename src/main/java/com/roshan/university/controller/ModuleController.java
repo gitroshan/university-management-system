@@ -50,12 +50,13 @@ public class ModuleController {
     public String addNewModule(@Valid Module module, BindingResult bindingResult, Model model) {
 
         this.log.info("Submitting module {}", module);
-        if (bindingResult.hasErrors()) {
-
-            this.log.info("Form has some errors");
-            return "module/index";
-        }
         try {
+            if (bindingResult.hasErrors()) {
+
+                this.log.info("Form has some errors");
+                return "module/index";
+            }
+
             this.moduleRepository.save(module);
             model.addAttribute("successMessage", "Module is saved");
 
@@ -73,7 +74,7 @@ public class ModuleController {
             ObjectError error = new FieldError("module", "name", "Module cannot be saved.");
             if (e instanceof DataIntegrityViolationException) {
                 error = new FieldError("module", "name",
-                        "Module with name \"" + module.getName() + "\"is already exists.");
+                        "Module with name \"" + module.getName() + "\" is already exists.");
             }
             bindingResult.addError(error);
 

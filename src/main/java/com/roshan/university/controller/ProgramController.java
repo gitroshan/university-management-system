@@ -50,12 +50,13 @@ public class ProgramController {
     public String addNewProgram(@Valid Program program, BindingResult bindingResult, Model model) {
 
         this.log.info("Submitting program {}", program);
-        if (bindingResult.hasErrors()) {
-
-            this.log.info("Form has some errors");
-            return "program/index";
-        }
         try {
+            if (bindingResult.hasErrors()) {
+
+                this.log.info("Form has some errors");
+                return "program/index";
+            }
+
             this.programRepository.save(program);
             model.addAttribute("successMessage", "Program is saved");
 
@@ -69,11 +70,12 @@ public class ProgramController {
 
             return "program/result";
         } catch (Exception e) {
+            System.out.println("--------------------------");
             this.log.error(e.getMessage(), e);
             ObjectError error = new FieldError("program", "name", "Program cannot be saved.");
             if (e instanceof DataIntegrityViolationException) {
                 error = new FieldError("program", "name",
-                        "Program with name \"" + program.getName() + "\"is already exists.");
+                        "Program with name \"" + program.getName() + "\" is already exists.");
             }
             bindingResult.addError(error);
 

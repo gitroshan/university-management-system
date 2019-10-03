@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>Groups</title>
+
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="content">
+			<div class="alert alert-success alert-highlighted" role="alert"
+				th:if="${successMessage}" th:text="${successMessage}">
+				<i class="mdi mdi-alert mr-1"></i>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card card-default">
+						<div class="card-header card-header-border-bottom">
+							<h2>Groups</h2>
+						</div>
+						<div class="card-body">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Name</th>
+										<th scope="col">Capacity</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:if="${groups.empty}">
+										<td colspan="4">No Groups Available</td>
+									</tr>
+									<tr th:each="group : ${groups}">
+										<td th:text="${group.id}"></td>
+										<td th:text="${group.name}"></td>
+										<td th:text="${group.capacity}"></td>
+										<td><i class="mdi mdi-delete"></i></td>
+									</tr>
+								</tbody>
+							</table>
+
+						
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

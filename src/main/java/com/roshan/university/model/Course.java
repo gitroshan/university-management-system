@@ -1,5 +1,6 @@
 package com.roshan.university.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class Course {
     private Long id;
 
     @NotEmpty(message = "Please provide a name")
+    @Column(unique = true)
     private String name;
 
     public Long getId() {
