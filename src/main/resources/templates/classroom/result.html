@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>Classrooms</title>
+
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="content">
+			<div class="alert alert-success alert-highlighted" role="alert"
+				th:if="${successMessage}" th:text="${successMessage}">
+				<i class="mdi mdi-alert mr-1"></i>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="card card-default">
+						<div class="card-header card-header-border-bottom">
+							<h2>Classrooms</h2>
+						</div>
+						<div class="card-body">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Name</th>
+										<th scope="col">Type</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:if="${classrooms.empty}">
+										<td colspan="4">No Classrooms Available</td>
+									</tr>
+									<tr th:each="classroom : ${classrooms}">
+										<td th:text="${classroom.id}"></td>
+										<td th:text="${classroom.name}"></td>
+										<td th:text="${classroom.type}"></td>
+										<td><i class="mdi mdi-delete"></i></td>
+									</tr>
+								</tbody>
+							</table>
+
+						
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
