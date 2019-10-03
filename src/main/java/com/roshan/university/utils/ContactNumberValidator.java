@@ -5,6 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -22,9 +23,13 @@ public class ContactNumberValidator implements ConstraintValidator<ContactNumber
     @Override
     public boolean isValid(String numberStr, ConstraintValidatorContext cxt) {
 
+        if (!StringUtils.hasText(numberStr)) {
+            return false;
+        }
+
         try {
             PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
-            PhoneNumber number = phoneUtil.parseAndKeepRawInput(numberStr, "ZZ");
+            PhoneNumber number = phoneUtil.parseAndKeepRawInput(numberStr, "MA");
             return phoneUtil.isValidNumber(number);
         } catch (NumberParseException e) {
             logger.error(e.getMessage(), e);

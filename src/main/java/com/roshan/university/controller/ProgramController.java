@@ -70,7 +70,7 @@ public class ProgramController {
 
             return "program/result";
         } catch (Exception e) {
-            System.out.println("--------------------------");
+            
             this.log.error(e.getMessage(), e);
             ObjectError error = new FieldError("program", "name", "Program cannot be saved.");
             if (e instanceof DataIntegrityViolationException) {

@@ -32,7 +32,7 @@ public class Professor {
 
     @NotEmpty(message = "Please provide a phone number")
     @ContactNumberConstraint
-    private Long phoneNumber;
+    private String phoneNumber;
 
     public Long getId() {
         return this.id;
@@ -66,11 +66,11 @@ public class Professor {
         this.email = email;
     }
 
-    public Long getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
