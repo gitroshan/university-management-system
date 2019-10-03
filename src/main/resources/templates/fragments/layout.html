@@ -440,7 +440,7 @@
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                      <img th:src="@{/assets/img/user/user.png}" class="user-image" alt="User Image" />
+                      <img th:src="@{/assets/img/user/u6.jpg}" class="user-image" alt="User Image" />
                       <span class="d-none d-lg-inline-block" sec:authorize="isAuthenticated()" style="display: inline-block;">
                       	<span sec:authentication="principal.firstname"></span> <span sec:authentication="principal.lastname"></span>
                       </span>
@@ -452,7 +452,8 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                       <!-- User image -->
                       <li class="dropdown-header">
-                        <img th:src="@{/assets/img/user/user.png}" class="img-circle" alt="User Image" />
+<!--                         <img th:src="@{/assets/img/user/user.png}" class="img-circle" alt="User Image" /> -->
+                        <img th:src="@{/assets/img/user/u6.jpg}" alt="User Image" class="img-circle"/>
                         <div class="d-inline-block" sec:authorize="isAuthenticated()" style="display: inline-block;">
                           <span sec:authentication="principal.firstname"></span> <span sec:authentication="principal.lastname"></span> <small class="pt-1"><span sec:authentication="principal.username"></span></small>
                         </div>
