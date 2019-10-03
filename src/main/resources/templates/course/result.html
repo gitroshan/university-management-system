@@ -5,7 +5,7 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 	layout:decorate="~{fragments/layout}">
 <head>
-<title>Programs</title>
+<title>Courses</title>
 
 </head>
 <body>
@@ -19,7 +19,7 @@
 				<div class="col-lg-12">
 					<div class="card card-default">
 						<div class="card-header card-header-border-bottom">
-							<h2>Programs</h2>
+							<h2>Courses</h2>
 						</div>
 						<div class="card-body">
 							<table class="table table-striped">
@@ -31,12 +31,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:if="${programs.empty}">
-										<td colspan="3">No Programs Available</td>
+									<tr th:if="${courses.empty}">
+										<td colspan="3">No Courses Available</td>
 									</tr>
-									<tr th:each="program : ${programs}">
-										<td th:text="${program.id}"></td>
-										<td th:text="${program.name}"></td>
+									<tr th:each="course : ${courses}">
+										<td th:text="${course.id}"></td>
+										<td th:text="${course.name}"></td>
 										<td><i class="mdi mdi-delete"></i></td>
 									</tr>
 								</tbody>

@@ -42,6 +42,7 @@ public class ProgramController {
 
     @GetMapping("/programs")
     public String index(Program program) {
+        this.log.info("Loading program form {}.", program);
         return "program/index";
     }
 
@@ -57,6 +58,15 @@ public class ProgramController {
         try {
             this.programRepository.save(program);
             model.addAttribute("successMessage", "Program is saved");
+
+            List<Program> programs = this.programRepository.findAll();
+
+            Collections.sort(programs, (program1, program2) -> {
+                return program1.getId().intValue() - program2.getId().intValue();
+            });
+
+            model.addAttribute("programs", programs);
+
             return "program/result";
         } catch (Exception e) {
             this.log.error(e.getMessage(), e);
