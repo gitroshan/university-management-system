@@ -22,7 +22,7 @@
 							<h2>Students</h2>
 						</div>
 						<div class="card-body">
-							<table class="table table-striped">
+							<table id="studentsTable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th scope="col">Id</th>
@@ -30,7 +30,7 @@
 										<th scope="col">Last Name</th>
 										<th scope="col">Email</th>
 										<th scope="col">Phone Number</th>
-										<th>Delete</th>
+										<th scope="col">Delete</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -47,9 +47,11 @@
 									</tr>
 								</tbody>
 							</table>
-
-						
-
+ 							<script type="text/javascript">
+ 						        $(document).ready(function() {
+						            $('#studentsTable').DataTable();
+						        } );
+					        </script>
 						</div>
 					</div>
 

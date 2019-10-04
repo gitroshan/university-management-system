@@ -8,7 +8,7 @@
 
   <title>Sleek - Admin Dashboard Template</title>
   
-  	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+  	
 	<script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
 	<script th:src="@{/assets/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/assets/plugins/toaster/toastr.min.js}"></script>
@@ -29,9 +29,7 @@
 	<script th:src="@{/assets/js/map.js}"></script>
 	<script th:src="@{/assets/js/custom.js}"></script>
 
-  <!-- GOOGLE FONTS -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
-  <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" th:href="@{/assets/plugins/MaterialDesign/css/materialdesignicons.min.css}"/>
 
   <!-- PLUGINS CSS STYLE -->
   
@@ -45,6 +43,20 @@
   
   <link id="bsdp-css" th:href="@{/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css}" rel="stylesheet">
   <script th:src="@{/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+  
+  <!-- Start Datatables -->
+  
+  
+ 		<link rel="stylesheet" type="text/css" th:href="@{/assets/plugins/DataTables/datatables.css}"/>
+  		<link rel="stylesheet" type="text/css" th:href="@{/assets/plugins/DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css}"/>
+  		<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+        <script th:src="@{/assets/plugins/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js}"></script>
+        <script th:src="@{/assets/plugins/DataTables/datatables.js}"></script>
+        
+
+        
+  <!-- End Datatables -->
 
   <!-- SLEEK CSS -->
   <link id="sleek-css" rel="stylesheet" type="text/css" th:href="@{/assets/css/sleek.css}"/>
