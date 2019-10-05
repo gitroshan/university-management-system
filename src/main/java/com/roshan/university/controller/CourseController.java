@@ -2,13 +2,13 @@ package com.roshan.university.controller;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.roshan.university.model.Course;
+import com.roshan.university.model.Program;
 import com.roshan.university.repository.CourseRepository;
+import com.roshan.university.repository.ProgramRepository;
 
 @Controller
 public class CourseController {
@@ -26,6 +28,8 @@ public class CourseController {
     private Logger log = LoggerFactory.getLogger(CourseController.class);
 
     private @Autowired CourseRepository courseRepository;
+
+    private @Autowired ProgramRepository programRepository;
 
     @GetMapping("/courses/result")
     public String result(Model model) {
@@ -41,8 +45,11 @@ public class CourseController {
     }
 
     @GetMapping("/courses")
-    public String index(Course course) {
+    public String index(Course course, Model model) {
         this.log.info("Loading course form {}.", course);
+
+        List<Program> programs = this.programRepository.findAll();
+        model.addAttribute("programs", programs);
         return "course/index";
     }
 
@@ -54,9 +61,21 @@ public class CourseController {
             if (bindingResult.hasErrors()) {
 
                 this.log.info("Form has some errors");
+                List<Program> programs = this.programRepository.findAll();
+                model.addAttribute("programs", programs);
                 return "course/index";
             }
 
+            Optional<Course> courseOptional = this.courseRepository.findByName(course.getName());
+            if (courseOptional.isPresent()) {
+                this.log.error("Course with name \"{}\" is already exists.", course.getName());
+                ObjectError error = new FieldError("course", "name",
+                        "Course with name \"" + course.getName() + "\" is already exists.");
+
+                bindingResult.addError(error);
+
+                return "course/index";
+            }
             this.courseRepository.save(course);
             model.addAttribute("successMessage", "Course is saved");
 
@@ -72,11 +91,10 @@ public class CourseController {
         } catch (Exception e) {
             this.log.error(e.getMessage(), e);
             ObjectError error = new FieldError("course", "name", "Course cannot be saved.");
-            if (e instanceof DataIntegrityViolationException) {
-                error = new FieldError("course", "name",
-                        "Course with name \"" + course.getName() + "\" is already exists.");
-            }
             bindingResult.addError(error);
+
+            List<Program> programs = this.programRepository.findAll();
+            model.addAttribute("programs", programs);
 
             return "course/index";
         }

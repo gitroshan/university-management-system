@@ -22,7 +22,7 @@
 							<h2>Professors</h2>
 						</div>
 						<div class="card-body">
-							<table id="professorsTable" class="table table-striped">
+							<table id="professorsTable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th scope="col">Id</th>
@@ -30,12 +30,11 @@
 										<th scope="col">Last Name</th>
 										<th scope="col">Email</th>
 										<th scope="col">Phone Number</th>
-										<th>Delete</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:if="${professors.empty}">
-										<td colspan="6">No Professors Available</td>
+										<td colspan="5">No Professors Available</td>
 									</tr>
 									<tr th:each="professor : ${professors}">
 										<td th:text="${professor.id}"></td>
@@ -43,7 +42,6 @@
 										<td th:text="${professor.lastName}"></td>
 										<td th:text="${professor.email}"></td>
 										<td th:text="${professor.phoneNumber}"></td>
-										<td><i class="mdi mdi-delete"></i></td>
 									</tr>
 								</tbody>
 							</table>

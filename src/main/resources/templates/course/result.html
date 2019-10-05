@@ -22,12 +22,12 @@
 							<h2>Courses</h2>
 						</div>
 						<div class="card-body">
-							<table id="coursesTable" class="table table-striped">
+							<table id="coursesTable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th scope="col">Id</th>
 										<th scope="col">Name</th>
-										<th>Delete</th>
+										<th scope="col">Program</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -37,7 +37,7 @@
 									<tr th:each="course : ${courses}">
 										<td th:text="${course.id}"></td>
 										<td th:text="${course.name}"></td>
-										<td><i class="mdi mdi-delete"></i></td>
+										<td th:text="${course.program.name}"></td>
 									</tr>
 								</tbody>
 							</table>

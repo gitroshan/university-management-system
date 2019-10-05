@@ -2,6 +2,7 @@ package com.roshan.university.controller;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -57,6 +58,17 @@ public class ProgramController {
                 return "program/index";
             }
 
+            Optional<Program> programOptional = this.programRepository.findByName(program.getName());
+            if (programOptional.isPresent()) {
+                this.log.error("Program with name \"{}\" is already exists.", program.getName());
+                ObjectError error = new FieldError("program", "name",
+                        "Program with name \"" + program.getName() + "\" is already exists.");
+
+                bindingResult.addError(error);
+
+                return "program/index";
+            }
+
             this.programRepository.save(program);
             model.addAttribute("successMessage", "Program is saved");
 
@@ -70,7 +82,7 @@ public class ProgramController {
 
             return "program/result";
         } catch (Exception e) {
-            
+
             this.log.error(e.getMessage(), e);
             ObjectError error = new FieldError("program", "name", "Program cannot be saved.");
             if (e instanceof DataIntegrityViolationException) {

@@ -7,10 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "program")
-public class Program {
+public class Program extends AuditModel {
+
+    private static final long serialVersionUID = -4498779195804407167L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +21,7 @@ public class Program {
 
     @NotEmpty(message = "Please provide a name.")
     @Column(unique = true)
+    @Size(max = 100)
     private String name;
 
     public Long getId() {

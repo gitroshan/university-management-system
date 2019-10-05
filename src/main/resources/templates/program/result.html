@@ -22,22 +22,20 @@
 							<h2>Programs</h2>
 						</div>
 						<div class="card-body">
-							<table id="programsTable" class="table table-striped">
+							<table id="programsTable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th scope="col">Id</th>
 										<th scope="col">Name</th>
-										<th>Delete</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:if="${programs.empty}">
-										<td colspan="3">No Programs Available</td>
+										<td colspan="2">No Programs Available</td>
 									</tr>
 									<tr th:each="program : ${programs}">
 										<td th:text="${program.id}"></td>
 										<td th:text="${program.name}"></td>
-										<td><i class="mdi mdi-delete"></i></td>
 									</tr>
 								</tbody>
 							</table>
