@@ -1,5 +1,6 @@
 package com.roshan.university.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -20,7 +21,6 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @NotEmpty(message = "{name.not.empty}")
     @NotEmpty(message = "Please provide a username")
     @Email(message = "Please provide an email")
     @Column(unique = true)
@@ -36,7 +36,7 @@ public class AppUser {
     private String lastName;
 
     @ManyToMany
-    private Set<AppRole> roles;
+    private Set<AppRole> roles = new HashSet<>();
 
     public Long getId() {
         return this.id;

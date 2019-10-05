@@ -50,4 +50,10 @@ public class AppRole {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "AppRole [id=" + this.id + ", name=" + this.name + ", description=" + this.description + ", users="
+                + this.users + "]";
+    }
+
 }

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -14,7 +15,9 @@ import com.roshan.university.utils.DateConstraint;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student extends AuditModel {
+
+    private static final long serialVersionUID = 9044076075846668244L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +41,10 @@ public class Student {
     @NotEmpty(message = "Please provide a birthdate")
     @DateConstraint
     private String birthdate;
+
+    @Transient
+    @NotEmpty(message = "Please provide a password")
+    private String password;
 
     public Long getId() {
         return this.id;
@@ -85,6 +92,14 @@ public class Student {
 
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

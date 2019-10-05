@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -13,7 +14,9 @@ import com.roshan.university.utils.ContactNumberConstraint;
 
 @Entity
 @Table(name = "professor")
-public class Professor {
+public class Professor extends AuditModel {
+
+    private static final long serialVersionUID = 4853962477070515841L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +36,10 @@ public class Professor {
     @NotEmpty(message = "Please provide a phone number")
     @ContactNumberConstraint
     private String phoneNumber;
+
+    @Transient
+    @NotEmpty(message = "Please provide a password")
+    private String password;
 
     public Long getId() {
         return this.id;
@@ -72,6 +79,20 @@ public class Professor {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor [id=" + this.id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email="
+                + this.email + ", phoneNumber=" + this.phoneNumber + "]";
     }
 
 }
