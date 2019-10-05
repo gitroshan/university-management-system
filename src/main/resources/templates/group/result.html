@@ -28,7 +28,7 @@
 										<th scope="col">Id</th>
 										<th scope="col">Name</th>
 										<th scope="col">Capacity</th>
-										<th>Delete</th>
+										<th scope="col">Course</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -39,7 +39,7 @@
 										<td th:text="${group.id}"></td>
 										<td th:text="${group.name}"></td>
 										<td th:text="${group.capacity}"></td>
-										<td><i class="mdi mdi-delete"></i></td>
+										<td th:text="${group.course.name}"></td>
 									</tr>
 								</tbody>
 							</table>

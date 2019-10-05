@@ -19,7 +19,7 @@
 						<div class="card-body">
 						
 	<form action="#" th:action="@{/programs}" th:object="${program}" method="post">
-	<div class="alert alert-danger alert-highlighted" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+	<div class="alert alert-danger alert-highlighted" role="alert" th:if="${#fields.hasErrors()}" th:errors="*">
 				<i class="mdi mdi-alert mr-1"></i><span></span>
 			</div>
 			
