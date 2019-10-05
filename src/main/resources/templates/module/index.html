@@ -19,7 +19,7 @@
 						<div class="card-body">
 						
 	<form action="#" th:action="@{/modules}" th:object="${module}" method="post">
-	<div class="alert alert-danger alert-highlighted" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+	<div class="alert alert-danger alert-highlighted" role="alert" th:if="${#fields.hasErrors()}" th:errors="*">
 				<i class="mdi mdi-alert mr-1"></i><span></span>
 			</div>
 			
@@ -29,6 +29,18 @@
 			<label for="name">Name</label>
 			<input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required="required">
 			
+		</div>
+		<div class="form-group blu-margin">
+		    <select class="form-control" th:field="${module.professor}">
+		    <option value="0">Select Professor</option>
+		    <option th:each="professor : ${professors}" th:value="${professor.id}" th:text="${professor.firstName + ' ' +professor.lastName}"></option>
+		    </select>
+		</div>
+		<div class="form-group blu-margin">
+		    <select class="form-control" th:field="${module.course}">
+		    <option value="0">Select Course</option>
+		    <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+		    </select>
 		</div>
 		<div class="form-footer pt-4 pt-5 mt-4 border-top">
 			<button type="submit" class="btn btn-primary btn-default">Submit</button>

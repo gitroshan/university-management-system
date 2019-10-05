@@ -27,17 +27,19 @@
 									<tr>
 										<th scope="col">Id</th>
 										<th scope="col">Name</th>
-										<th>Delete</th>
+										<th scope="col">Course</th>
+										<th scope="col">Professor</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:if="${modules.empty}">
-										<td colspan="3">No Modules Available</td>
+										<td colspan="4">No Modules Available</td>
 									</tr>
 									<tr th:each="module : ${modules}">
 										<td th:text="${module.id}"></td>
 										<td th:text="${module.name}"></td>
-										<td><i class="mdi mdi-delete"></i></td>
+										<td th:text="${module.course.name}"></td>
+										<td th:text="${module.professor.firstName + ' ' + module.professor.lastName}"></td>
 									</tr>
 								</tbody>
 							</table>
