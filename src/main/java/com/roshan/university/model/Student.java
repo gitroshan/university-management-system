@@ -2,13 +2,20 @@ package com.roshan.university.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.roshan.university.utils.ContactNumberConstraint;
 import com.roshan.university.utils.DateConstraint;
@@ -45,6 +52,12 @@ public class Student extends AuditModel {
     @Transient
     @NotEmpty(message = "Please provide a password")
     private String password;
+
+    @NotNull(message = "Group cannot be empty")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "group_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Group group;
 
     public Long getId() {
         return this.id;
@@ -102,10 +115,19 @@ public class Student extends AuditModel {
         this.password = password;
     }
 
+    public Group getGroup() {
+        return this.group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     @Override
     public String toString() {
         return "Student [id=" + this.id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email="
-                + this.email + ", phoneNumber=" + this.phoneNumber + ", birthdate=" + this.birthdate + "]";
+                + this.email + ", phoneNumber=" + this.phoneNumber + ", birthdate=" + this.birthdate + ", password="
+                + this.password + ", group=" + this.group + "]";
     }
 
 }

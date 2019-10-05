@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.roshan.university.exception.RoleNotFoundException;
 import com.roshan.university.model.AppRole;
 import com.roshan.university.model.AppUser;
+import com.roshan.university.model.Group;
 import com.roshan.university.model.Student;
 import com.roshan.university.repository.AppRoleRepository;
 import com.roshan.university.repository.AppUserRepository;
+import com.roshan.university.repository.GroupRepository;
 import com.roshan.university.repository.StudentRepository;
 
 @Controller
@@ -36,6 +38,8 @@ public class StudentController {
     private @Autowired AppUserRepository appUserRepository;
 
     private @Autowired AppRoleRepository appRoleRepository;
+
+    private @Autowired GroupRepository groupRepository;
 
     private @Autowired BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -53,8 +57,11 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public String index(Student student) {
+    public String index(Student student, Model model) {
         this.log.info("Loading student form {}.", student);
+
+        List<Group> groups = this.groupRepository.findAll();
+        model.addAttribute("groups", groups);
         return "student/index";
     }
 
@@ -66,6 +73,8 @@ public class StudentController {
             if (bindingResult.hasErrors()) {
 
                 this.log.info("Form has some errors");
+                List<Group> groups = this.groupRepository.findAll();
+                model.addAttribute("groups", groups);
                 return "student/index";
             }
 
@@ -76,7 +85,8 @@ public class StudentController {
                         "Student with email \"" + student.getEmail() + "\" is already exists.");
 
                 bindingResult.addError(error);
-
+                List<Group> groups = this.groupRepository.findAll();
+                model.addAttribute("groups", groups);
                 return "student/index";
             }
 
@@ -87,7 +97,8 @@ public class StudentController {
                         "Student with phone number \"" + student.getPhoneNumber() + "\" is already exists.");
 
                 bindingResult.addError(error);
-
+                List<Group> groups = this.groupRepository.findAll();
+                model.addAttribute("groups", groups);
                 return "student/index";
             }
 
@@ -98,7 +109,8 @@ public class StudentController {
                         "User with email \"" + student.getEmail() + "\" is already exists.");
 
                 bindingResult.addError(error);
-
+                List<Group> groups = this.groupRepository.findAll();
+                model.addAttribute("groups", groups);
                 return "student/index";
             }
 
@@ -133,7 +145,8 @@ public class StudentController {
             this.log.error(e.getMessage(), e);
             ObjectError error = new FieldError("student", "name", "Student cannot be saved.");
             bindingResult.addError(error);
-
+            List<Group> groups = this.groupRepository.findAll();
+            model.addAttribute("groups", groups);
             return "student/index";
         }
     }
