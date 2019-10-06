@@ -73,7 +73,7 @@
 		</div>
 		<div class="form-group blu-margin">
 		    <select class="form-control" th:field="${student.group}" required="required">
-		    <option value="0">Select Course</option>
+		    <option value="0">Select Group</option>
 		    <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
 		    </select>
 		</div>

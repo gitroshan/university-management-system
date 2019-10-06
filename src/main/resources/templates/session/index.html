@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>Sessions</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="content">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card card-default">
+						<div class="card-header card-header-border-bottom">
+							<h2>Session Form</h2>
+						</div>
+						<div class="card-body">
+						
+	<form action="#" th:action="@{/sessions}" th:object="${classroomSession}" method="post">
+		<div class="alert alert-danger alert-highlighted" role="alert" th:if="${#fields.hasErrors()}" th:errors="*">
+			<i class="mdi mdi-alert mr-1"></i><span></span>
+		</div>
+			
+			
+			
+		<div class="form-group blu-margin">
+		    <select class="form-control" th:field="${classroomSession.classroom}" required="required">
+		    <option value="0">Select Classroom</option>
+		    <option th:each="classroom : ${classrooms}" th:value="${classroom.id}" th:text="${classroom.name}"></option>
+		    </select>
+		</div>
+		<div class="form-group">
+			<label for="beginHours">Begin Hours</label>
+			<input type="number" class="form-control" id="beginHours" name="beginHours" placeholder="Enter Begin Hours">
+			
+		</div>
+		<div class="form-group">
+			<label for="beginHours">End Hours</label>
+			<input type="number" class="form-control" id="endHours" name="endHours" placeholder="Enter End Hours">
+			
+		</div>
+		
+		<div class="form-group blu-margin">
+		    <select class="form-control" th:field="${classroomSession.group}" required="required">
+		    <option value="0">Select Group</option>
+		    <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
+		    </select>
+		</div>
+		<div class="form-footer pt-4 pt-5 mt-4 border-top">
+			<button type="submit" class="btn btn-primary btn-default">Submit</button>
+		</div>
+	</form>
+	
+	
+</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
