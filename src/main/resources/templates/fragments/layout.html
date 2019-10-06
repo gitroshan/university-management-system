@@ -1,6 +1,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <html lang="en"  dir="ltr" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -124,10 +125,19 @@
               <ul class="nav sidebar-inner" id="sidebar-menu">
                 
 
-                
+				<li  class="has-sub" sec:authorize="isAuthenticated()">
+                    <a class="sidenav-item-link" th:href="@{/}">
+                      <i class="mdi mdi-grid"></i>
+                      <span class="nav-text">Profile</span> 
+                      <b class="caret"></b>
+                    </a>
+                    
+                   
+                    
+                  </li>
                 
                   
-                  <li  class="has-sub" >
+                  <li  class="has-sub" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#program" aria-expanded="false" aria-controls="program">
                       <i class="mdi mdi-grid"></i>
                       <span class="nav-text">Program</span> 
@@ -152,7 +162,7 @@
                   </li>
                   
                   
-                  <li  class="has-sub" >
+                  <li  class="has-sub" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#course" aria-expanded="false" aria-controls="course">
                       <i class="mdi mdi-view-dashboard-outline"></i>
                       <span class="nav-text">Course</span> 
@@ -176,7 +186,7 @@
                     
                   </li>
                   
-                  <li  class="has-sub" >
+                  <li  class="has-sub" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#module" aria-expanded="false" aria-controls="module">
                       <i class="mdi mdi-gradient"></i>
                       <span class="nav-text">Module</span> 
@@ -200,31 +210,9 @@
                     
                   </li>
                   
-                   <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#schedule" aria-expanded="false" aria-controls="schedule">
-                      <i class="mdi mdi-sort-ascending"></i>
-                      <span class="nav-text">Schedules</span> 
-                      <b class="caret"></b>
-                    </a>
-                    
-                    <ul  class="collapse"  id="schedule" data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li >
-                              <a class="sidenav-item-link" th:href="@{/courses}">
-                                <span class="nav-text">Add Schedule</span>
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" th:href="@{/courses/result}">
-                                <span class="nav-text">View Schedule</span>
-                              </a>
-                            </li>
-                      </div>
-                    </ul>
-                    
-                  </li>
                   
-                   <li  class="has-sub" >
+                  
+                   <li  class="has-sub" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#group" aria-expanded="false" aria-controls="group">
                       <i class="mdi mdi-group"></i>
                       <span class="nav-text">Groups</span> 
@@ -248,7 +236,7 @@
                     
                   </li>
                   
-                   <li  class="has-sub" >
+                   <li  class="has-sub" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#professor" aria-expanded="false" aria-controls="professor">
                       <i class="mdi mdi-account-star"></i>
                       <span class="nav-text">Professors</span> 
@@ -272,21 +260,21 @@
                     
                   </li>
                   
-                   <li  class="has-sub" >
+                   <li  class="has-sub" sec:authorize="isAuthenticated()">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#student" aria-expanded="false" aria-controls="student">
                       <i class="mdi mdi-account-circle"></i>
-                      <span class="nav-text">Students</span> 
+                      <span class="nav-text">Student</span> 
                       <b class="caret"></b>
                     </a>
                     
                     <ul  class="collapse"  id="student" data-parent="#sidebar-menu">
                       <div class="sub-menu">
-                            <li >
+                            <li sec:authorize="hasAnyRole('ROLE_ADMIN')">
                               <a class="sidenav-item-link" th:href="@{/students}">
                                 <span class="nav-text">Add Student</span>
                               </a>
                             </li>
-                            <li >
+                            <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')">
                               <a class="sidenav-item-link" th:href="@{/students/result}">
                                 <span class="nav-text">View Student</span>
                               </a>
@@ -296,33 +284,10 @@
                     
                   </li>
                   
-               <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#level" aria-expanded="false" aria-controls="level">
-                      <i class="mdi mdi-format-align-justify"></i>
-                      <span class="nav-text">Levels</span> 
-                      <b class="caret"></b>
-                    </a>
-                    
-                    <ul  class="collapse"  id="level" data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                            <li >
-                              <a class="sidenav-item-link" th:href="@{/levels}">
-                                <span class="nav-text">Add Level</span>
-                              </a>
-                            </li>
-                            <li >
-                              <a class="sidenav-item-link" th:href="@{/levels/result}">
-                                <span class="nav-text">View Level</span>
-                              </a>
-                            </li>
-                      </div>
-                    </ul>
-                    
-                  </li>
+              
                   
                   
-                  
-                  <li  class="has-sub" >
+                  <li  class="has-sub" sec:authorize="hasAnyRole('ROLE_ADMIN')">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#classroom" aria-expanded="false" aria-controls="classroom">
                       <i class="mdi mdi-nfc-variant"></i>
                       <span class="nav-text">Classrooms</span> 
@@ -348,7 +313,7 @@
                   
                   
                   
-                  <li  class="has-sub" >
+                  <li  class="has-sub" sec:authorize="isAuthenticated()">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#session" aria-expanded="false" aria-controls="session">
                       <i class="mdi mdi-av-timer"></i>
                       <span class="nav-text">Sessions</span> 
@@ -357,7 +322,7 @@
                     
                     <ul  class="collapse"  id="session" data-parent="#sidebar-menu">
                       <div class="sub-menu">
-                            <li >
+                            <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')">
                               <a class="sidenav-item-link" th:href="@{/sessions}">
                                 <span class="nav-text">Add Session</span>
                               </a>
@@ -372,6 +337,29 @@
                     
                   </li>
                   
+                  <li  class="has-sub" sec:authorize="isAuthenticated()">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#document" aria-expanded="false" aria-controls="document">
+                      <i class="mdi mdi-av-timer"></i>
+                      <span class="nav-text">Documents</span> 
+                      <b class="caret"></b>
+                    </a>
+                    
+                    <ul  class="collapse"  id="document" data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_TEACHER')">
+                              <a class="sidenav-item-link" th:href="@{/documents}">
+                                <span class="nav-text">Upload Documents</span>
+                              </a>
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" th:href="@{/documents/result}">
+                                <span class="nav-text">View Documents</span>
+                              </a>
+                            </li>
+                      </div>
+                    </ul>
+                    
+                  </li>
                   
                   
               </ul>

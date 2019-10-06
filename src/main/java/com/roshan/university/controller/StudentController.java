@@ -120,9 +120,9 @@ public class StudentController {
             appUser.setUsername(student.getEmail());
             appUser.setPassword(this.bCryptPasswordEncoder.encode(student.getPassword()));
 
-            Optional<AppRole> appRole = this.appRoleRepository.findByName("ROLE_TEACHER");
+            Optional<AppRole> appRole = this.appRoleRepository.findByName("ROLE_STUDENT");
             if (!appRole.isPresent()) {
-                throw new RoleNotFoundException("ROLE_TEACHER is not found.");
+                throw new RoleNotFoundException("ROLE_STUDENT is not found.");
             }
             appUser.getRoles().add(appRole.get());
 
