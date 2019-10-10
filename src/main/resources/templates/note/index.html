@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>Notes</title>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="content">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card card-default">
+						<div class="card-header card-header-border-bottom">
+							<h2>Note Form</h2>
+						</div>
+						<div class="card-body">
+						
+						
+						
+	<form action="#" th:action="@{/notes}" th:object="${note}" method="post">
+		<div class="alert alert-danger alert-highlighted" role="alert" th:if="${#fields.hasErrors()}" th:errors="*">
+			<i class="mdi mdi-alert mr-1"></i><span></span>
+		</div>
+			
+			
+			
+		<div class="form-group blu-margin">
+		    <select class="form-control" th:field="${note.student}" required="required">
+		    <option value="0">Select Student</option>
+		    <option th:each="student : ${students}" th:value="${student.id}" th:text="${student.firstName + ' ' + student.lastName}"></option>
+		    </select>
+		</div>
+		<div class="form-group blu-margin">
+		    <select class="form-control" th:field="${note.course}" required="required">
+		    <option value="0">Select Course</option>
+		    <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+		    </select>
+		</div>
+		<div class="form-group">
+			<label for="description">Note</label>
+			<textarea class="form-control z-depth-1" id="description" name="description" rows="10" placeholder="Write something here..." required="required"></textarea>
+			
+			
+		</div>
+		
+		<div class="form-footer pt-4 pt-5 mt-4 border-top">
+			<button type="submit" class="btn btn-primary btn-default">Submit</button>
+		</div>
+	</form>
+	
+	
+</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -44,9 +44,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
         }
 
-        // return new MediUser(username, "NA", true, true, true, true, grantList, "Roshan", "Priyadarshana", null, 0,
-        // 0);
-
         return new AuthenticatedUser(appUser.getFirstName(), appUser.getLastName(), appUser.getUsername(),
                 appUser.getPassword(), grantList);
 

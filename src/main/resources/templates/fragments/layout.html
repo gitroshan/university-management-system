@@ -113,9 +113,9 @@
                     <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                   </g>
                 </svg>
-                <span class="brand-name" th:text="#{site.name}">
+                <div class="brand-name" th:text="#{site.name}">
                 	
-                </span>
+                </div>
               </a>
             </div>
             <!-- begin sidebar scrollbar -->
@@ -127,7 +127,7 @@
 
 				<li  class="has-sub" sec:authorize="isAuthenticated()">
                     <a class="sidenav-item-link" th:href="@{/}">
-                      <i class="mdi mdi-grid"></i>
+                      <i class="mdi mdi-account"></i>
                       <span class="nav-text">Profile</span> 
                       <b class="caret"></b>
                     </a>
@@ -339,7 +339,7 @@
                   
                   <li  class="has-sub" sec:authorize="isAuthenticated()">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#document" aria-expanded="false" aria-controls="document">
-                      <i class="mdi mdi-av-timer"></i>
+                      <i class="mdi mdi-file-document-box"></i>
                       <span class="nav-text">Documents</span> 
                       <b class="caret"></b>
                     </a>
@@ -354,6 +354,30 @@
                             <li >
                               <a class="sidenav-item-link" th:href="@{/documents/result}">
                                 <span class="nav-text">View Documents</span>
+                              </a>
+                            </li>
+                      </div>
+                    </ul>
+                    
+                  </li>
+                  
+                  <li  class="has-sub" sec:authorize="isAuthenticated()">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#note" aria-expanded="false" aria-controls="note">
+                      <i class="mdi mdi-note"></i>
+                      <span class="nav-text">Notes</span> 
+                      <b class="caret"></b>
+                    </a>
+                    
+                    <ul  class="collapse"  id="note" data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                            <li sec:authorize="hasAnyRole('ROLE_TEACHER')">
+                              <a class="sidenav-item-link" th:href="@{/notes}">
+                                <span class="nav-text">Add Note</span>
+                              </a>
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" th:href="@{/notes/result}">
+                                <span class="nav-text">View Notes</span>
                               </a>
                             </li>
                       </div>

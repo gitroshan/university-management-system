@@ -14,21 +14,7 @@
 
 		<div class="content">
 	
-                <div sec:authorize="!isAuthenticated()">
-			        Text visible only to authenticated users.
-			    </div>
-			    <div sec:authorize="isAuthenticated()">
-  This content is only shown to authenticated users.
-</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-  This content is only shown to administrators.
-</div>
-<div sec:authorize="hasRole('ROLE_TEACHER')">
-  This content is only shown to teachers.
-</div>
-<div sec:authorize="hasRole('ROLE_STUDENT')">
-  This content is only shown to students.
-</div>	
+
 
 			<div class="bg-white border rounded">
 				<div class="row no-gutters">
