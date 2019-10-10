@@ -28,16 +28,18 @@
 										<th scope="col">Id</th>
 										<th scope="col">Name</th>
 										<th scope="col">File Name</th>
+										<th scope="col">Download</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:if="${documents.empty}">
-										<td colspan="3">No Documents Available</td>
+										<td colspan="4">No Documents Available</td>
 									</tr>
 									<tr th:each="document : ${documents}">
 										<td th:text="${document.id}"></td>
 										<td th:text="${document.name}"></td>
 										<td th:text="${document.fileName}"></td>
+										<td><a th:href="${document.link}">Download</a></td>
 									</tr>
 								</tbody>
 							</table>

@@ -28,6 +28,8 @@ public class Document extends AuditModel {
     @NotEmpty(message = "Please provide a file name")
     private String fileName;
 
+    private String link;
+
     public Long getId() {
         return this.id;
     }
@@ -58,6 +60,14 @@ public class Document extends AuditModel {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getLink() {
+        return this.link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
 }
